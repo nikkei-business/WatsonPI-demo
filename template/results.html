@@ -1,0 +1,196 @@
+<!-- demo root element -->
+<div style='width=500px'>
+<h3>単語数：{{ word_count }}</h3>
+<h2>性格特性</h2>
+<div class="chart-container" style="position: relative; height:40vh; width=40vw">
+    <h3>性格特性ビッグ5</h3>
+    <canvas id="chart-big5"><canvas>
+</div>
+<div class="chart-container" style="position: relative; height:40vh; width=40vw">
+    <h3>開放性詳細</h3>
+    <canvas id="chart-openness"><canvas>
+</div>
+<div class="chart-container" style="position: relative; height:40vh; width=40vw">
+    <h3>誠実性詳細</h3>
+    <canvas id="chart-conscientiousness"><canvas>
+</div>
+<div class="chart-container" style="position: relative; height:40vh; width=40vw">
+    <h3>外交性詳細</h3>
+    <canvas id="chart-extraversion"><canvas>
+</div>
+<div class="chart-container" style="position: relative; height:40vh; width=40vw">
+    <h3>協調性詳細</h3>
+    <canvas id="chart-agreeableness"><canvas>
+</div>
+<div class="chart-container" style="position: relative; height:40vh; width=40vw">
+    <h3>情緒不安定性詳細</h3>
+    <canvas id="chart-neuroticism"><canvas>
+</div>
+<hr>
+<h2>欲求</h2>
+<div class="chart-container" style="position: relative; height:40vh; width=40vw">
+    <canvas id="chart-need"><canvas>
+</div>
+<hr>
+<h2>価値観</h2>
+<div class="chart-container" style="position: relative; height:40vh; width=40vw">
+    <canvas id="chart-value"><canvas>
+</div>
+<script>
+var bigf = document.getElementById("chart-big5")
+var bigfChart = new Chart(bigf,{type:'radar',data:{
+    labels:[
+        '{{ openness.label }}',
+        '{{ conscientiousness.label }}',
+        '{{ extraversion.label }}',
+        '{{ agreeableness.label }}',
+        '{{ neuroticism.label }}'],
+    datasets:[{data:[
+        {{ openness.value }},
+        {{ conscientiousness.value }},
+        {{ extraversion.value }},
+        {{ agreeableness.value }},
+        {{ neuroticism.value }}]}]},
+    options:{scale:{pointLabels:{fontSize:15},ticks:{stepSize:20,max:100,beginAtZero:true}},legend:{display:false}}})
+
+var opn = document.getElementById("chart-openness")
+var opnChart = new Chart(opn,{type:'radar',data:{
+    labels:[
+        '{{ adventurousness.label }}',
+        '{{ artistic_interests.label }}',
+        '{{ emotionality.label }}',
+        '{{ imagination.label }}',
+        '{{ intellect.label }}',
+        '{{ liberalism.label }}'],
+    datasets:[{data:[
+        {{ adventurousness.value }},
+        {{ artistic_interests.value }},
+        {{ emotionality.value }},
+        {{ imagination.value }},
+        {{ intellect.value }},
+        {{ liberalism.value }}]}]},
+    options:{scale:{pointLabels:{fontSize:15},ticks:{stepSize:20,max:100,beginAtZero:true}},legend:{display:false}}})
+
+var cns = document.getElementById("chart-conscientiousness")
+var cnsChart = new Chart(cns,{type:'radar',data:{
+    labels:[
+        '{{ achievement_striving.label }}',
+        '{{ cautiousness.label }}',
+        '{{ dutifulness.label }}',
+        '{{ orderliness.label }}',
+        '{{ self_discipline.label }}',
+        '{{ self_efficacy.label }}'],
+    datasets:[{data:[
+        {{ achievement_striving.value }},
+        {{ cautiousness.value }},
+        {{ dutifulness.value }},
+        {{ orderliness.value }},
+        {{ self_discipline.value }},
+        {{ self_efficacy.value }}]}]},
+    options:{scale:{pointLabels:{fontSize:15},ticks:{stepSize:20,max:100,beginAtZero:true}},legend:{display:false}}})
+
+var exv = document.getElementById("chart-extraversion")
+var exvChart = new Chart(exv,{type:'radar',data:{
+    labels:[
+        '{{ activity_level.label }}',
+        '{{ assertiveness.label }}',
+        '{{ cheerfulness.label }}',
+        '{{ excitement_seeking.label }}',
+        '{{ friendliness.label }}',
+        '{{ gregariousness.label }}'],
+    datasets:[{data:[
+        {{ activity_level.value }},
+        {{ assertiveness.value }},
+        {{ cheerfulness.value }},
+        {{ excitement_seeking.value }},
+        {{ friendliness.value }},
+        {{ gregariousness.value }}]}]},
+    options:{scale:{pointLabels:{fontSize:15},ticks:{stepSize:20,max:100,beginAtZero:true}},legend:{display:false}}})
+
+var agr = document.getElementById("chart-agreeableness")
+var agrChart = new Chart(agr,{type:'radar',data:{
+    labels:[
+        '{{ altruism.label }}',
+        '{{ cooperation.label }}',
+        '{{ modesty.label }}',
+        '{{ morality.label }}',
+        '{{ sympathy.label }}',
+        '{{ trust.label }}'],
+    datasets:[{data:[
+        {{ altruism.value }},
+        {{ cooperation.value }},
+        {{ modesty.value }},
+        {{ morality.value }},
+        {{ sympathy.value }},
+        {{ trust.value }}]}]},
+    options:{scale:{pointLabels:{fontSize:15},ticks:{stepSize:20,max:100,beginAtZero:true}},legend:{display:false}}})
+
+var neu = document.getElementById("chart-neuroticism")
+var neuChart = new Chart(neu,{type:'radar',data:{
+    labels:[
+        '{{ anger.label }}',
+        '{{ anxiety.label }}',
+        '{{ depression.label }}',
+        '{{ immoderation.label }}',
+        '{{ self_consciousness.label }}',
+        '{{ vulnerability.label }}'],
+    datasets:[{data:[
+        {{ anger.value }},
+        {{ anxiety.value }},
+        {{ depression.value }},
+        {{ immoderation.value }},
+        {{ self_consciousness.value }},
+        {{ vulnerability.value }}]}]},
+    options:{scale:{pointLabels:{fontSize:15},ticks:{stepSize:20,max:100,beginAtZero:true}},legend:{display:false}}})
+
+var need = document.getElementById("chart-need")
+var needChart = new Chart(need,{type:'radar',data:{
+    labels:[
+        '{{ liberty.label }}',
+        '{{ ideal.label }}',
+        '{{ love.label }}',
+        '{{ practicality.label }}',
+        '{{ self_expression.label }}',
+        '{{ stability.label }}',
+        '{{ structure.label }}',
+        '{{ challenge.label }}',
+        '{{ closeness.label }}',
+        '{{ curiosity.label }}',
+        '{{ excitement.label }}',
+        '{{ harmony.label }}'],
+    datasets:[{data:[
+        {{ liberty.value }},
+        {{ ideal.value }},
+        {{ love.value }},
+        {{ practicality.value }},
+        {{ self_expression.value }},
+        {{ stability.value }},
+        {{ structure.value }},
+        {{ challenge.value }},
+        {{ closeness.value }},
+        {{ curiosity.value }},
+        {{ excitement.value }},
+        {{ harmony.value }}]}]},
+    options:{scale:{pointLabels:{fontSize:15},ticks:{stepSize:20,max:100,beginAtZero:true}},legend:{display:false}}})
+
+var mval = document.getElementById("chart-value")
+var mvalChart = new Chart(mval,{type:'radar',data:{
+    labels:[
+        '{{ conservation.label }}',
+        '{{ hedonism.label }}',
+        '{{ openness_to_change.label }}',
+        '{{ self_enhancement.label }}',
+        '{{ self_transcendence.label }}'],
+    datasets:[{data:[
+        {{ conservation.value }},
+        {{ hedonism.value }},
+        {{ openness_to_change.value }},
+        {{ self_enhancement.value }},
+        {{ self_transcendence.value }}]}]},
+    options:{scale:{pointLabels:{fontSize:15},ticks:{stepSize:20,max:100,beginAtZero:true}},legend:{display:false}}})
+</script>
+<hr>
+<!--
+<h2>Watson Personality Insightsとは</h2>
+ {{ url }} -->
+</div>

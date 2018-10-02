@@ -1,0 +1,22 @@
+runtime: python27
+api_version: 1
+threadsafe: true
+
+libraries:
+- name: ssl
+  version: latest
+
+handlers:
+- url: /js
+  static_dir: js
+
+- url: /css
+  static_dir: css
+
+- url: /.*
+  secure: always
+  script: WatsonPI.app
+
+env_variables:
+  WATSON_USERNAME: '<your_username>'
+  WATSON_PASSWORD: '<your_password>'
